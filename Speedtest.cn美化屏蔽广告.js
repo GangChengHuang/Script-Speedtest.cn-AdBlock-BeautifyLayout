@@ -4,7 +4,7 @@
 // @version      1.1
 // @description  Speedtest.cn页面净化/美化，给你一个纯净的网页！
 // @author       Peterg
-// @match        https://www.speedtest.cn/*
+// @match        *.speedtest.cn/*
 // @icon         https://www.speedtest.cn/images/ico/favicon.ico
 // @grant        none
 // @run-at       document-end
@@ -26,6 +26,10 @@
         '#app > section > div > div.tools > div.more-tools-list-index',
         '#app > section > div > div.tools > div.download',
         '#app > section > div > div.toolbox',
+        '#__layout > div > div.nuxt_wrap.hasFooter > div.speedtest_wrap > div > div.speed_start_top_wrap',
+        '#header > div.right > img',
+        '#header > div.right > div.more',
+        '#__layout > div > div.nuxt_wrap.hasFooter > div.speed-rocket-container',
         '#app > section > div > div.txt_wrap > div.pub-tab > ul > li.active',
         '#app > section > div.speed-home-warp > div.speed-home-content > div.speedtest-warp > div.dialog-container-change-warp > div > div.change-content > div.copyWriter',
         '#app > section > div.speed-home-warp > div.speed-home-content > div.speedtest-warp.speedtest-end-warp > div.speedtest-run.speed-end-wrap.add-speed-warp > div.gauge-warp > div.app-download-wrap',
