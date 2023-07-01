@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Speedtest纯净&净化&屏蔽&美化
 // @namespace    https://github.com/GangChengHuang
-// @version      1.1
+// @version      1.3
 // @description  Speedtest.cn页面净化/美化，给你一个纯净的网页！
 // @author       Peterg
-// @match        *.speedtest.cn/*
+// @match        https://www.speedtest.cn/*
+// @match        https://m.speedtest.cn/*
 // @icon         https://www.speedtest.cn/images/ico/favicon.ico
 // @grant        none
 // @run-at       document-end
@@ -15,7 +16,15 @@
 
     var ad_js_paths_one = ['#app > section > div.speed-home-warp > div.speed-home-content > div', 5, 2,
         '#app > section > div', 5, 3,
+        '#__layout > div > div.footer > div', 5, 2,
+        '#__layout > div > div.footer > div', 4, 2,
+        '#__layout > div > div.record.nuxt_wrap.hasFooter > div.title > div > img', 2, 2,
+        '#__layout > div > div.nuxt_wrap.tools_wrap.tools_parcel.hasFooter > ul > li', 13, 1,
     ];
+
+    var ad_js_paths = ['#__layout > div > div.nuxt_wrap.tools_wrap.tools_parcel.hasFooter > ul', 4, 0,
+        '#__layout > div > div.nuxt_wrap.tools_wrap.tools_parcel.hasFooter > div', 4, 0,];
+
 
     var ad_js_paths_multiple = ['#app > div.sus-window',
         '#app > section > div.wg > div.network-module',
@@ -26,14 +35,28 @@
         '#app > section > div > div.tools > div.more-tools-list-index',
         '#app > section > div > div.tools > div.download',
         '#app > section > div > div.toolbox',
-        '#__layout > div > div.nuxt_wrap.hasFooter > div.speedtest_wrap > div > div.speed_start_top_wrap',
+        '#__layout > div > div.nuxt_wrap.hasFooter > div > div > div.speed_start_top_wrap > div',
         '#header > div.right > img',
         '#header > div.right > div.more',
+        'body > div.wrap.fadein',
         '#__layout > div > div.nuxt_wrap.hasFooter > div.speed-rocket-container',
+        '#__layout > div > div.nuxt_wrap.hasFooter > div.speedtest_wrap > div > div.speedEndEnt_wrap.endent_wrap',
+        '#__layout > div > div.nuxt_wrap.hasFooter > div.speedtest_wrap > div > div.add_wrap.speed_add_wrap > p.more',
+        '#__layout > div > div.nuxt_wrap.tools_wrap.tools_parcel.hasFooter > div.tools-banner',
+        '#__layout > div > div.nuxt_wrap.hasFooter > div > div > div.tools-banner',
+        '#__layout > div > div > div.tools-banner',
+        '#__layout > div > div.nuxt_wrap.hasFooter > div > div.node_select_picker.van-popup.van-popup--bottom > div > div.download-app',
+        '#__layout > div > div.record.nuxt_wrap.hasFooter > div.content-wrap > div.list-wrap > div.list > div > div.nologin',
+        '#__layout > div > div > div.speed-rocket-container',
+        '#__layout > div > div > div.main.main-padding > div > dl.user-sign-brand-test > dd.button-link',
+        '#__layout > div > div > div.to-diagnostic-report',
+        '#__layout > div > div.bgc-black',
+        '#__layout > div > div.nuxt_wrap.hasFooter > div > div > div.speedup > div.info > div:nth-child(2) > div > div.right',
         '#app > section > div > div.txt_wrap > div.pub-tab > ul > li.active',
         '#app > section > div.speed-home-warp > div.speed-home-content > div.speedtest-warp > div.dialog-container-change-warp > div > div.change-content > div.copyWriter',
         '#app > section > div.speed-home-warp > div.speed-home-content > div.speedtest-warp.speedtest-end-warp > div.speedtest-run.speed-end-wrap.add-speed-warp > div.gauge-warp > div.app-download-wrap',
         '#app > section > div.speed-home-warp > div.speed-home-content > div.speedtest-warp.speedtest-end-warp > div.account_wrap > div.right',
+        '#app > section > div.wg > div.result-show-ani > div.result-history > div.caption',
         '#app > section > div.speed-home-warp > div.speed-home-content > div.speedtest-warp.speedtest-end-warp > div.speedtest-run.speed-end-wrap.add-speed-warp > div.speed-run-warp.speed-run-warp-border > div.link-more-tool'
     ];
 
@@ -44,6 +67,8 @@
     function adRemoveIf() {
         var ad_elements = document.querySelectorAll("#app > section > div.speed-home-warp > div.speed-home-content > div.speedtest-warp > div.dialog-container-change-warp > div > div.change-content > div > ul > li");
         for (var i = 0; i < ad_elements.length; i++) ad_elements[i].querySelector("p.exclusive") && ad_elements[i].remove();
+        var ad_elements2 = document.querySelectorAll("#__layout > div > div.nuxt_wrap.hasFooter > div > div.node_select_picker.van-popup.van-popup--bottom > div > div.node_list.van-list > div");
+        for (var k = 0; k < ad_elements2.length; k++) ad_elements2[k].querySelector("div.tip") && ad_elements2[k].remove();
     }
 
     function findAD(js_path) {
@@ -59,7 +84,7 @@
     }
 
     function pageMutation() {
-        var targetNode = document.getElementById('app');
+        var targetNode = document.getElementById('app') ? document.getElementById('app') : document.getElementById('__nuxt');
         var config = { attributes: true, childList: true, subtree: true };
         var callback = function (mutationsList) {
             mutationsList.forEach(function (item, index) {
@@ -75,6 +100,16 @@
     function fristRemove() {
         for (var j = 0; j < (ad_js_paths_multiple.length / 3); j++) adRemoveOne(findADs(ad_js_paths_one[j * 3]), ad_js_paths_one[j * 3 + 1], (ad_js_paths_one[j * 3 + 2] - 1));
         for (var i = 0; i < ad_js_paths_multiple.length; i++) adRemove(findAD(ad_js_paths_multiple[i]));
+        for (var k = 0; k < (ad_js_paths.length / 3); k++) {
+            var elems = findADs(ad_js_paths[k * 3]);
+            if (elems && (elems.length == (ad_js_paths[k * 3 + 1]))) {
+                for (var l = 0; l < elems.length; l++) {
+                    if (l != (ad_js_paths[k * 3 + 2])) {
+                        adRemove(elems[l]);
+                    }
+                }
+            }
+        }
     }
 
     function fixLayout() {
@@ -82,6 +117,11 @@
         if (document.querySelector("#app > section > div.speed-home-warp > div.speed-home-content > div.speedtest-warp > div.dialog-container-change-warp > div > div.change-content > div > ul > li > p")) {
             var lays = document.querySelectorAll("#app > section > div.speed-home-warp > div.speed-home-content > div.speedtest-warp > div.dialog-container-change-warp > div > div.change-content > div > ul > li > p");
             for (var i = 0; i < lays.length; i++) if (lays[i].style.width != "100%") lays[i].style.width = "100%";
+        }
+
+        var test_text = document.querySelector("#app > section > div.speed-home-warp > div.speed-home-content > div.speedtest-warp > div.start-circle.start-speed-circle > p") ? document.querySelector("#app > section > div.speed-home-warp > div.speed-home-content > div.speedtest-warp > div.start-circle.start-speed-circle > p") : document.querySelector("#__layout > div > div.nuxt_wrap.hasFooter > div > div > div.start-animation-wrap.start_circle_wrap > div > p");
+        if (test_text && (test_text.textContent == "测速")) {
+            test_text.textContent = "纯净测速";
         }
     }
     pageMutation();
