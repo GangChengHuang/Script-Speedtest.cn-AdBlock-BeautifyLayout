@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Speedtest净化/屏蔽广告
-// @namespace    GCH
+// @name         Speedtest纯净&净化&屏蔽广告&美化
+// @namespace    https://github.com/GangChengHuang
 // @version      0.1
-// @description  Speedtest.cn页面净化/屏蔽广告/美化
+// @description  Speedtest.cn页面净化/屏蔽广告/美化，给你一个纯净的网页！
 // @author       Peterg
 // @match        https://www.speedtest.cn/*
 // @icon         https://www.speedtest.cn/images/ico/favicon.ico
