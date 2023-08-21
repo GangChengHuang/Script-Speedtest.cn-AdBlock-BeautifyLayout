@@ -1,5 +1,6 @@
 # Script-Speedtest.cn-AdBlock-BeautifyLayout
-油猴脚本-Speedtest.cn页面净化/屏蔽广告/美化--支持移动端页面
+- 油猴脚本-Speedtest.cn页面净化/屏蔽广告/美化--支持移动端页面
+- 2.0大升级，去广告更无感！！！
 # -功能介绍
 ### 去广告
 去除页面顶部推广
