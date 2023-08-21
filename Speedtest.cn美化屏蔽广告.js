@@ -7,7 +7,7 @@
 // @match        https://www.speedtest.cn/*
 // @match        https://m.speedtest.cn/*
 // @icon         https://www.speedtest.cn/images/ico/favicon.ico
-// @grant        none
+// @grant        GM_addStyle
 // @run-at       document-start
 // @license      GPL3.0
 // ==/UserScript==
