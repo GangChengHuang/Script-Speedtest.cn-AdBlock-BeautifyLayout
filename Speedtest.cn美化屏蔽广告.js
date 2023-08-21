@@ -8,7 +8,7 @@
 // @match        https://m.speedtest.cn/*
 // @icon         https://www.speedtest.cn/images/ico/favicon.ico
 // @grant        none
-// @run-at       document-end
+// @run-at       document-start
 // @license      GPL3.0
 // ==/UserScript==
 
